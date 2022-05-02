@@ -8,6 +8,8 @@ RUN cd /tmp/install && curl -o eid.tar.gz -sSL https://eidas.minv.sk/download/Ap
     curl -o web-signer.deb -sSL https://download.disigcdn.sk/cdn/products/websigner2/disig-web-signer.ubuntu_amd64.deb && \
     curl -o dlauncher.zip -sSL https://www.slovensko.sk/static/zep/apps/DLauncher.linux.x86_64.zip && \
     curl -o chrome.deb -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    tar -xvf eid.tar.gz && apt install -y ./Aplikacia_pre_eID_amd64_ubuntu.deb && apt install -y ./web-signer.deb && apt install -y ./java.deb && apt install -y ./chrome.deb
+    tar -xvf eid.tar.gz && apt install -y ./Aplikacia_pre_eID_amd64_ubuntu.deb && apt install -y ./web-signer.deb && apt install -y ./java.deb && apt install -y ./chrome.deb && \
+    unzip dlauncher.zip -d /tmp/install && chown abc:abc /tmp/install/*.run && chmod +x /tmp/install/*.run && \
+    rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT service pcscd start && /init
